@@ -1,0 +1,31 @@
+name: data
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-CU15-ubuntu-22.04
+    ports:
+      - 14331:1433
+    user: root
+    restart: no
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_MEMORY_LIMIT_MB: 2048
+      MSSQL_AGENT_ENABLED: 1
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_PID: Developer
+      MSSQL_BACKUP_DIR: /var/opt/mssql/backups
+      MSSQL_LCID: 1033
+      TZ: Asia/Macau
+    volumes:
+      - ./mssql/data:/var/opt/mssql/data
+  minio:
+    image: minio/minio
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ./minio/data:/data
+    command: server /data --console-address ":9001"
