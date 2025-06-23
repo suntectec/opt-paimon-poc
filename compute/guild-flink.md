@@ -4,7 +4,8 @@ source ~/.bashrc
 ```
 
 ```shell
-# Start the SQL Client run
+# To Access the SQL CLI, execute
+docker exec -it sql-client bin/sql-client.sh embedded
 docker compose run sql-client
 ```
 

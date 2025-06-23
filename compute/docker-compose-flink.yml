@@ -1,12 +1,27 @@
 name: Flink
 
 services:
-  jobmanager:
+  sql-client:
+    container_name: sql-client
     build:
-      context: ./
-      dockerfile: Dockerfile
-    image: compute-flink-cluster
+      context: .
+      dockerfile: flink/Dockerfile
+    depends_on:
+      - jobmanager
+    command: tail -f /dev/null  # 保持容器运行 ; docker exec -it sql-client bin/sql-client.sh embedded
+    tty: true
+    stdin_open: true
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        rest.address: jobmanager
+
+  jobmanager:
     container_name: jobmanager
+    build:
+      context: .
+      dockerfile: flink/Dockerfile
     ports:
       - "18081:8081"
     command: jobmanager
@@ -16,14 +31,12 @@ services:
         jobmanager.rpc.address: jobmanager
         jobmanager.memory.process.size: 2048m
         parallelism.default: 3
-    volumes:
-      - ./logs/paimon:/tmp/paimon
+
   taskmanager:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: compute-flink-cluster
     container_name: taskmanager
+    build:
+      context: .
+      dockerfile: flink/Dockerfile
     depends_on:
       - jobmanager
     command: taskmanager
@@ -35,18 +48,3 @@ services:
         taskmanager.numberOfTaskSlots: 10
         taskmanager.memory.process.size: 4096m
         taskmanager.memory.framework.off-heap.size: 256m
-    volumes:
-      - ./logs/paimon:/tmp/paimon
-  sql-client:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: compute-flink-cluster
-    command: bin/sql-client.sh
-    depends_on:
-      - jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
-        rest.address: jobmanager

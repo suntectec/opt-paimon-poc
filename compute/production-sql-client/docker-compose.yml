@@ -1,8 +1,9 @@
 services:
+  # docker exec -it sql-client /opt/sql-client/sql-client.sh
   sql-client:
-    container_name: 'sql-client'
+    container_name: sql-client
     build:
-      context: .
+      context: ..
       dockerfile: sql-client/Dockerfile
     depends_on:
       - jobmanager
@@ -10,6 +11,7 @@ services:
       FLINK_JOBMANAGER_HOST: jobmanager
 
   jobmanager:
+    container_name: jobmanager
     image: flink:1.20
     ports:
       - "18081:8081"
@@ -18,8 +20,11 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
+        jobmanager.memory.process.size: 2048m
+        parallelism.default: 3
 
   taskmanager:
+    container_name: taskmanager
     image: flink:1.20
     depends_on:
       - jobmanager

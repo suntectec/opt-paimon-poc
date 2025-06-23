@@ -2,8 +2,8 @@ name: Seatunnel
 
 services:
   master:
+    container_name: seatunnel-master
     image: apache/seatunnel
-    container_name: seatunnel_master
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -17,11 +17,11 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.2
     volumes:
-      - ./config:/config
+      - ./seatunnel/config:/config
 
   worker1:
+    container_name: seatunnel-worker-1
     image: apache/seatunnel
-    container_name: seatunnel_worker_1
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -34,11 +34,11 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.3
     volumes:
-      - ./config:/config
+      - ./seatunnel/config:/config
 
   worker2:
+    container_name: seatunnel-worker-2
     image: apache/seatunnel
-    container_name: seatunnel_worker_2
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -51,7 +51,7 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.4
     volumes:
-      - ./config:/config
+      - ./seatunnel/config:/config
 
 networks:
   seatunnel_network:
