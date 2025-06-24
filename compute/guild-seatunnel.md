@@ -36,6 +36,11 @@ docker run --name seatunnel_client \
 more command please refer user-command
 ```
 
+```shell
+# To Access the Seatunnel CLI, execute after seatunnel-client up
+docker exec -it seatunnel-client ./bin/seatunnel.sh -c /config/sftpcsv2console.batch.conf
+```
+
 ```sql
 -- 1
 select 1

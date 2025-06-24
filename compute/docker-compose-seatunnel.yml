@@ -53,6 +53,21 @@ services:
     volumes:
       - ./seatunnel/config:/config
 
+  client:
+    container_name: seatunnel-client
+    image: apache/seatunnel
+    networks:
+      seatunnel_network:
+    environment:
+      - ST_DOCKER_MEMBER_LIST=seatunnel-master:5801
+    command: tail -f /dev/null  # 保持容器运行
+    depends_on:
+      - master
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./seatunnel/config:/config
+
 networks:
   seatunnel_network:
     driver: bridge
