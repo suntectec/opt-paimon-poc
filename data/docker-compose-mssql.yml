@@ -1,8 +1,9 @@
-name: data
+name: Mssql
 
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-CU15-ubuntu-22.04
+    container_name: paimon-poc.mssql
     ports:
       - 14331:1433
     user: root
@@ -18,14 +19,7 @@ services:
       TZ: Asia/Macau
     volumes:
       - ./mssql/data:/var/opt/mssql/data
-  minio:
-    image: minio/minio
-    ports:
-      - "19000:9000"
-      - "19001:9001"
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-    volumes:
-      - ./minio/data:/data
-    command: server /data --console-address ":9001"
+
+networks:
+  default:
+    name: mssql-net
