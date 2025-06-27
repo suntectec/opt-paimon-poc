@@ -5,8 +5,5 @@
 ```shell
 # set alias in bashrc
 echo "alias dmariadb='cd /opt/paimon-poc/data && docker compose -f docker-compose-mariadb.yml '" >> ~/.bashrc
-```
-
-```shell
 source ~/.bashrc
 ```
