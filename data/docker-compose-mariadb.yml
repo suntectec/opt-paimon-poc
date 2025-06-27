@@ -1,6 +1,9 @@
+name: Mariadb
+
 services:
   mariadb:
     image: mariadb:latest
+    container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
