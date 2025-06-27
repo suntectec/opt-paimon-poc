@@ -1,22 +1,26 @@
+# Seatunnel
+
+优化执行命令 docker compose -f <> 起别名 d<>
+
 ```shell
 # set alias in bashrc
 echo "alias dflink='cd /opt/paimon-poc/compute && docker compose -f docker-compose-flink.yml '" >> ~/.bashrc
 source ~/.bashrc
 ```
 
+直接执行 job 提交命令 或者 进入客户端依次执行
+
 ```shell
-# To Access the SQL CLI, execute
+# To Submit Job Executing Directly
+docker exec -it jobmanager /opt/flink/bin/sql-client.sh embedded -f /opt/flink/job.sql
+
+# Or, To Access the SQL CLI, execute
 docker exec -it sql-client bin/sql-client.sh embedded
-docker compose run sql-client
 ```
 
-```shell
-# load AWS credentials from environment variables AWS KEY
-export AWS_ACCESS_KEY_ID=minioadmin
-export AWS_SECRET_ACCESS_KEY=minioadmin
+# Flink SQL Client
 
-flink/bin/sql-client.sh embedded [shell]
-```
+访问 Paimon
 
 ```sql
 DROP CATALOG paimon_catalog;

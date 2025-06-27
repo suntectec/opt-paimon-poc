@@ -1,13 +1,17 @@
+# Seatunnel
+
+优化执行命令 docker compose -f <> 起别名 d<>
+
 ```shell
 # set alias in bashrc
 echo "alias dseatunnel='cd /opt/paimon-poc/compute && docker compose -f docker-compose-seatunnel.yml '" >> ~/.bashrc
 source ~/.bashrc
 ```
 
+Docker作为客户端，提交作业到 Seatunnel Cluster 执行
+
 ```shell
-Job Operation on cluster
-use docker as a client
-submit job :
+# submit job :
 # you need update yourself master container ip to `ST_DOCKER_MEMBER_LIST`
 docker run --name seatunnel_client \
     --network seatunnel_seatunnel_network \
@@ -16,7 +20,7 @@ docker run --name seatunnel_client \
     apache/seatunnel \
     ./bin/seatunnel.sh  -c config/v2.batch.config.template
 
-list job
+# list job
 # you need update yourself master container ip to `ST_DOCKER_MEMBER_LIST`
 docker run --name seatunnel_client \
     --network seatunnel_seatunnel_network \
@@ -33,9 +37,9 @@ docker run --name seatunnel_client \
     --rm \
     apache/seatunnel \
     ./bin/seatunnel.sh -c /config/sqlserver2paimon.stream.conf
-
-more command please refer user-command
 ```
+
+直接执行 job 提交命令 或者 进入客户端依次执行
 
 ```shell
 # new cluster version with running seatunnel-client container
@@ -53,6 +57,10 @@ bin/start-seatunnel-flink-15-connector-v2.sh -c /config/sqlserver2paimon.stream.
 # zeta engine
 bin/seatunnel.sh -m local -c /config/sqlserver2paimon.stream.conf
 ```
+
+# Flink SQL Client
+
+访问 Paimon
 
 ```sql
 -- CATALOG
@@ -88,5 +96,4 @@ RESET 'execution.checkpointing.interval';
 SET 'execution.runtime-mode' = 'batch';
 
 SELECT id,order_id,supplier_id,item_id,qty FROM seatunnel_sqlserver_paimon_sink where id = 247048;
-
 ```
