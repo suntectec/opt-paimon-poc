@@ -1,0 +1,10 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./mariadb/mariadb.cnf:/etc/mysql/mariadb.conf.d/mariadb.cnf
+      - ./mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "13306:3306"

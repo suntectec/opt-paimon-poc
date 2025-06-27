@@ -2,7 +2,7 @@ USE CATALOG default_catalog;
 
 CREATE CATALOG s3_catalog WITH (
     'type' = 'paimon',
-    'warehouse' = 's3://lakehouse/paimon',
+    'warehouse' = 's3://warehouse/paimon',
     's3.endpoint'='http://192.168.138.15:9000',
     's3.access-key' = 'minioadmin',
     's3.secret-key' = 'minioadmin'
@@ -28,8 +28,8 @@ create temporary table products (
 ) WITH (
     'connector' = 'mysql-cdc',
     'connection.pool.size' = '10',
-    'hostname' = 'mariadb',
-    'port' = '3306',
+    'hostname' = '192.168.138.15',
+    'port' = '13306',
     'username' = 'root',
     'password' = 'rootpassword',
     'database-name' = 'mydatabase',

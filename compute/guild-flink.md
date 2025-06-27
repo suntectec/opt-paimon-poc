@@ -12,10 +12,12 @@ source ~/.bashrc
 
 ```shell
 # To Submit Job Executing Directly
-docker exec -it jobmanager /opt/flink/bin/sql-client.sh embedded -f /opt/flink/job.sql
+docker exec -it flink-jobmanager /opt/flink/bin/sql-client.sh embedded -f /opt/flink/job.sql
+```
 
+```shell
 # Or, To Access the SQL CLI, execute
-docker exec -it sql-client bin/sql-client.sh embedded
+docker exec -it flink-sql-client bin/sql-client.sh embedded
 ```
 
 # Flink SQL Client
