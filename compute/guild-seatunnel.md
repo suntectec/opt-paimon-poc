@@ -1,5 +1,13 @@
 # Seatunnel
 
+### Build Dockerfile
+
+* _SeaTunnel_
+
+```shell
+docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:jdk11-2.3.11 .
+```
+
 优化执行命令 docker compose -f <> 起别名 d<>
 
 ```shell

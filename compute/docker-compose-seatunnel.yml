@@ -3,7 +3,7 @@ name: Seatunnel
 services:
   master:
     container_name: seatunnel-master
-    image: apache/seatunnel
+    image: seatunnel:jdk11-2.3.11
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -21,7 +21,7 @@ services:
 
   worker1:
     container_name: seatunnel-worker-1
-    image: apache/seatunnel
+    image: seatunnel:jdk11-2.3.11
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -38,7 +38,7 @@ services:
 
   worker2:
     container_name: seatunnel-worker-2
-    image: apache/seatunnel
+    image: seatunnel:jdk11-2.3.11
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -55,7 +55,7 @@ services:
 
   client:
     container_name: seatunnel-client
-    image: apache/seatunnel
+    image: seatunnel:jdk11-2.3.11
     networks:
       seatunnel_network:
     environment:
