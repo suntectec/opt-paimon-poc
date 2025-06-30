@@ -3,7 +3,7 @@ name: Seatunnel
 services:
   master:
     container_name: seatunnel-master
-    image: seatunnel:jdk11-2.3.11
+    image: apache/seatunnel
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -21,7 +21,7 @@ services:
 
   worker1:
     container_name: seatunnel-worker-1
-    image: seatunnel:jdk11-2.3.11
+    image: apache/seatunnel
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -38,7 +38,7 @@ services:
 
   worker2:
     container_name: seatunnel-worker-2
-    image: seatunnel:jdk11-2.3.11
+    image: apache/seatunnel
     environment:
       - ST_DOCKER_MEMBER_LIST=172.16.0.2,172.16.0.3,172.16.0.4
     entrypoint: >
@@ -55,16 +55,14 @@ services:
 
   client:
     container_name: seatunnel-client
-    image: seatunnel:jdk11-2.3.11
-    networks:
-      seatunnel_network:
+    image: apache/seatunnel
     environment:
       - ST_DOCKER_MEMBER_LIST=seatunnel-master:5801
     command: tail -f /dev/null  # 保持容器运行
     depends_on:
       - master
-    tty: true
-    stdin_open: true
+    networks:
+      seatunnel_network:
     volumes:
       - ./seatunnel/config:/config
 

@@ -1,22 +1,24 @@
 # Seatunnel
 
-### Build Dockerfile
+## Environment Preparation
 
-* _SeaTunnel_
+set alias in bashrc
+
+```shell
+echo "alias dseatunnel='cd /opt/paimon-poc/compute && docker compose -f docker-compose-seatunnel.yml '" >> ~/.bashrc
+
+source ~/.bashrc
+```
+
+## Dockerfile Build
 
 ```shell
 docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:jdk11-2.3.11 .
 ```
 
-优化执行命令 docker compose -f <> 起别名 d<>
+## Submit Job
 
-```shell
-# set alias in bashrc
-echo "alias dseatunnel='cd /opt/paimon-poc/compute && docker compose -f docker-compose-seatunnel.yml '" >> ~/.bashrc
-source ~/.bashrc
-```
-
-Docker作为客户端，提交作业到 Seatunnel Cluster 执行
+### Approach.1. Submit Job to Seatunnel Cluster
 
 ```shell
 # submit job :
@@ -47,23 +49,22 @@ docker run --name seatunnel_client \
     ./bin/seatunnel.sh -c /config/sqlserver2paimon.stream.conf
 ```
 
-直接执行 job 提交命令 或者 进入客户端依次执行
+### Approach.2. Submit Job to Seatunnel Client
+
+With running seatunnel-client container, to Access the Seatunnel CLI
 
 ```shell
-# new cluster version with running seatunnel-client container
-# To Access the Seatunnel CLI, execute after seatunnel-client up
 docker exec -it seatunnel-client ./bin/seatunnel.sh -c /config/sftpcsv2console.batch.conf
 ```
 
+### Approach.3. Submit Job within Container
+
+Entering Container 
+
 ```shell
-# old local version without running seatunnel-client container
-docker exec -it seatunnel-test bash
+docker exec -it seatunnel-client bash
 
-# flink engine
-bin/start-seatunnel-flink-15-connector-v2.sh -c /config/sqlserver2paimon.stream.conf
-
-# zeta engine
-bin/seatunnel.sh -m local -c /config/sqlserver2paimon.stream.conf
+bin/seatunnel.sh -c /config/sqlserver2paimon.stream.conf
 ```
 
 # Flink SQL Client
