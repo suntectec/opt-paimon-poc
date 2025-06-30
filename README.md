@@ -1,5 +1,7 @@
 # Trying out Apache Paimon with Apache Flink using Docker Compose - Proof of Concept
 
+![Static Badge](https://img.shields.io/badge/Apache-Paimon-blue?logo=apache&logoColor=%23E6526F&labelColor=black)
+
 Running Apache Flink containers using Docker Compose is a convenient way to get up and running to try out some Flink workloads.
 
 Assuming docker compose is installed you can start the containers using the following command in the same folder as the docker compose file:
