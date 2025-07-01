@@ -37,9 +37,9 @@ docker exec -it flink-client bin/sql-client.sh embedded -f /opt/flink/jobs/sqlse
 Entering Container
 
 ```shell
-docker exec -it flink-client bin/sql-client.sh embedded
-
 docker exec -it flink-jobmanager bin/sql-client.sh embedded
+
+docker exec -it flink-client bin/sql-client.sh embedded
 ```
 
 # Flink SQL Client Query and Options
