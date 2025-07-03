@@ -21,7 +21,7 @@
 #You only need to configure the plug-in name in config/plugin_config.
 
 # get seatunnel home
-SEATUNNEL_HOME=$(cd $(dirname $0);cd ../;pwd)
+#SEATUNNEL_HOME=$(cd $(dirname $0);cd ../;pwd)
 
 # connector default version is 2.3.11, you can also choose a custom version. eg: 2.3.11:  sh install-plugin.sh 2.3.11
 version=2.3.11
@@ -49,4 +49,3 @@ while read line; do
     fi
 
 done < ${SEATUNNEL_HOME}/config/plugin_config
-

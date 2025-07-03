@@ -13,7 +13,7 @@ source ~/.bashrc
 ## Dockerfile Build
 
 ```shell
-docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:jdk11-2.3.11 .
+docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:2.3.11-jdk-11 .
 ```
 
 ## Submit Job
