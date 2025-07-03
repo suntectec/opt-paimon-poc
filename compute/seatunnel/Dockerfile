@@ -18,11 +18,12 @@ RUN cd /opt && \
     sed -i 's/rootLogger.appenderRef.file.ref/#rootLogger.appenderRef.file.ref/' seatunnel/config/log4j2.properties && \
     cp seatunnel/config/hazelcast-master.yaml seatunnel/config/hazelcast-worker.yaml
 
-COPY seatunnel/install-plugin.sh ${SEATUNNEL_HOME}/bin/install-plugin.sh
+#COPY seatunnel/install-plugin.sh ${SEATUNNEL_HOME}/bin/install-plugin.sh
 
+# seatunnel/plugin_config - this file must created by Linux not Windows for character set diff
 COPY seatunnel/plugin_config ${SEATUNNEL_HOME}/config/plugin_config
 
 WORKDIR ${SEATUNNEL_HOME}
 
-RUN ["chmod", "+x", "bin/install-plugin.sh"]
+#RUN ["chmod", "+x", "bin/install-plugin.sh"]
 #RUN sh bin/install-plugin.sh ${VERSION}
