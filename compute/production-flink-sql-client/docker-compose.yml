@@ -3,7 +3,7 @@ services:
   sql-client:
     container_name: sql-client
     build:
-      context: ..
+      context: .
       dockerfile: sql-client/Dockerfile
     depends_on:
       - jobmanager
