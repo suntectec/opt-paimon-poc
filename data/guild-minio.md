@@ -1,9 +1,9 @@
 # Minio
 
-优化执行命令 docker compose -f <> 起别名 d<>
+set alias in bashrc
 
 ```shell
-# set alias in bashrc
-echo "alias dminio='cd /opt/paimon-poc/data && docker compose -f docker-compose-minio.yml '" >> ~/.bashrc
+echo "alias dminio='cd /opt/paimon-poc/data/minio && docker compose -f docker-compose.yml '" >> ~/.bashrc
+
 source ~/.bashrc
 ```

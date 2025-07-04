@@ -1,5 +1,3 @@
-name: Seatunnel
-
 services:
   master:
     container_name: seatunnel-master
@@ -17,7 +15,7 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.2
     volumes:
-      - ./seatunnel/config:/config
+      - ./config:/config
 
   worker1:
     container_name: seatunnel-worker-1
@@ -34,7 +32,7 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.3
     volumes:
-      - ./seatunnel/config:/config
+      - ./config:/config
 
   worker2:
     container_name: seatunnel-worker-2
@@ -51,7 +49,7 @@ services:
       seatunnel_network:
         ipv4_address: 172.16.0.4
     volumes:
-      - ./seatunnel/config:/config
+      - ./config:/config
 
   client:
     container_name: seatunnel-client
@@ -64,7 +62,7 @@ services:
     networks:
       seatunnel_network:
     volumes:
-      - ./seatunnel/config:/config
+      - ./config:/config
 
 networks:
   seatunnel_network:

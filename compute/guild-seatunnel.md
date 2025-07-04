@@ -5,18 +5,9 @@
 set alias in bashrc
 
 ```shell
-echo "alias dseatunnel='cd /opt/paimon-poc/compute && docker compose -f docker-compose-seatunnel.yml '" >> ~/.bashrc
+echo "alias dseatunnel='cd /opt/paimon-poc/compute/seatunnel && docker compose -f docker-compose.yml '" >> ~/.bashrc
 
 source ~/.bashrc
-```
-
-## Dockerfile Build
-
-PS Attention: seatunnel/plugin_config - this file must firstly created by Linux not Windows for character set diff
-or set IDEA Line Seperator Code Style to Unix
-
-```
-docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:2.3.11-jdk-11 .
 ```
 
 ## Submit Job

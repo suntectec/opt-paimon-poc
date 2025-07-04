@@ -1,16 +1,16 @@
 # Mssql
 
-优化执行命令 docker compose -f <> 起别名 d<>
+set alias in bashrc
 
 ```shell
-# set alias in bashrc
-echo "alias dmssql='cd /opt/paimon-poc/data && docker compose -f docker-compose-mssql.yml '" >> ~/.bashrc
+echo "alias dmssql='cd /opt/paimon-poc/data/mssql && docker compose -f docker-compose.yml '" >> ~/.bashrc
+
 source ~/.bashrc
 ```
 
 SqlServer 
 
-1、启动时，开启 Agent 
+1、启动时，开启 Agent
 
 2、开启库 CDC
 

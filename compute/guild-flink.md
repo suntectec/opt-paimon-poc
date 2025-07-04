@@ -5,15 +5,9 @@
 set alias in bashrc
 
 ```shell
-echo "alias dflink='cd /opt/paimon-poc/compute && docker compose -f docker-compose-flink.yml '" >> ~/.bashrc
+echo "alias dflink='cd /opt/paimon-poc/compute/flink && docker compose -f docker-compose.yml '" >> ~/.bashrc
 
 source ~/.bashrc
-```
-
-## Dockerfile Build
-
-```shell
-docker build -f flink/Dockerfile -t flink:1.20-paimon-1.2.0 .
 ```
 
 ## Submit Job
