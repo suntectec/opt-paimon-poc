@@ -20,10 +20,11 @@ RUN cd /opt && \
 
 #COPY seatunnel/install-plugin.sh ${SEATUNNEL_HOME}/bin/install-plugin.sh
 
-# seatunnel/plugin_config - this file must created by Linux not Windows for character set diff
+# seatunnel/plugin_config - this file must created by Unix/Linux Format not Windows for Line Seperator character set diff
+# or set IDEA Line Seperator Code Style to Unix
 COPY seatunnel/plugin_config ${SEATUNNEL_HOME}/config/plugin_config
 
 WORKDIR ${SEATUNNEL_HOME}
 
 #RUN ["chmod", "+x", "bin/install-plugin.sh"]
-#RUN sh bin/install-plugin.sh ${VERSION}
+RUN sh bin/install-plugin.sh ${VERSION}

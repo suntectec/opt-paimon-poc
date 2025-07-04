@@ -13,6 +13,7 @@ source ~/.bashrc
 ## Dockerfile Build
 
 PS Attention: seatunnel/plugin_config - this file must firstly created by Linux not Windows for character set diff
+or set IDEA Line Seperator Code Style to Unix
 
 ```
 docker build -f seatunnel/Dockerfile --build-arg VERSION=2.3.11 -t seatunnel:2.3.11-jdk-11 .
